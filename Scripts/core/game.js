@@ -23,7 +23,6 @@ var core;
     var currentScene;
     var menu;
     var over;
-    var play;
     var instructions;
     // asset manifest for images and sounds
     var assetData = [
@@ -40,7 +39,10 @@ var core;
         { id: "baaaa", src: "Assets/audio/baaaa.wav" },
         { id: "explosion", src: "Assets/audio/explosion.wav" },
         { id: "main_theme", src: "Assets/audio/main_theme.wav" },
-        { id: "over", src: "Assets/audio/over.wav" }
+        { id: "over", src: "Assets/audio/over.wav" },
+        { id: "gameOverStub", src: "Assets/images/gameOverStub.png" },
+        { id: "nextLevelStub", src: "Assets/images/nextLevelStub.png" },
+        { id: "restartLevelButton", src: "Assets/images/restartLevelButton.png" }
     ];
     /**
      * This method preloads assets for the game
@@ -99,8 +101,8 @@ var core;
             // Show the PLAY Scene
             case config.Scene.PLAY:
                 core.stage.removeAllChildren();
-                play = new scenes.Play();
-                currentScene = play;
+                core.play = new scenes.Play();
+                currentScene = core.play;
                 break;
             // Show the GAME OVER Scene
             case config.Scene.OVER:

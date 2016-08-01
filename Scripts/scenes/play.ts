@@ -41,8 +41,16 @@ module scenes {
             switch (this._levelNumber) {
                 // Show LEVEL 1
                 case config.Level.LEVEL_1:
-                    this.removeAllChildren();
+                    this._currentLevel.removeAllChildren();
                     this._currentLevel = new levels.Level1();
+                    break;
+                case config.Level.LEVEL_2:
+                    this._currentLevel.removeAllChildren();
+                    this._currentLevel = new levels.Level2();
+                    break;
+                case config.Level.LEVEL_3:
+                    this._currentLevel.removeAllChildren();
+                    this._currentLevel = new levels.Level3();
                     break;
             }
         }

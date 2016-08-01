@@ -37,7 +37,7 @@ namespace core {
 
     let menu:scenes.Menu;
     let over:scenes.Over;
-    let play:scenes.Play;
+    export let play:scenes.Play;
     let instructions:scenes.Instructions;
 
 
@@ -56,7 +56,10 @@ namespace core {
         {id: "baaaa", src: "Assets/audio/baaaa.wav"},
         {id: "explosion", src: "Assets/audio/explosion.wav"},
         {id: "main_theme", src: "Assets/audio/main_theme.wav"},
-        {id: "over", src: "Assets/audio/over.wav"}
+        {id: "over", src: "Assets/audio/over.wav"},
+        {id: "gameOverStub", src: "Assets/images/gameOverStub.png"},
+        {id: "nextLevelStub", src: "Assets/images/nextLevelStub.png"},
+        {id: "restartLevelButton", src: "Assets/images/restartLevelButton.png"}
     ];
 
     /**
