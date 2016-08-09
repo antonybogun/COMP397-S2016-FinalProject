@@ -26,15 +26,15 @@ var scenes;
         /**
          *
          */
-        Exit.prototype.Start = function () {
+        Exit.prototype.start = function () {
             this._space = new objects.Space("space");
             this.addChild(this._space);
             //add the Thank You label
-            this._thankYouLabel = new objects.Label("THANK YOU FOR PLAYING!", "40px", "Broadway", "#7200ff", 320, 240, true);
+            this._thankYouLabel = new objects.Label("THANK YOU FOR PLAYING!", "40px", "BroadwayFont", "#7200ff", 320, 240, true);
             this.addChild(this._thankYouLabel);
             core.stage.addChild(this);
         };
-        Exit.prototype.Update = function () {
+        Exit.prototype.update = function () {
             this._space.update();
             this._thankYouLabel.alpha == 1 ? this._thankYouLabel.alpha = 0 : this._thankYouLabel.alpha = 1;
             // scene updates happen here...
