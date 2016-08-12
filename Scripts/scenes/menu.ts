@@ -34,7 +34,7 @@ module scenes {
             // Add Menu Label
             this._menuLabel = new objects.Label(
                 "FLYING DEAD", "80px", "BroadwayFont", "#7200ff",
-                315, 140
+                320, 140, true
             );
             this.addChild(this._menuLabel);
 
