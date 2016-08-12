@@ -32,6 +32,7 @@ namespace core {
     export let fuelLevel:number = 5;
     export let gunBullets:number = 0;
     export let gameSpeed:number = 2000;
+    export let themeSound:createjs.AbstractSoundInstance;
     let startButton:objects.Button; // reference to our button class
 
     // declare scene variables
@@ -107,6 +108,9 @@ namespace core {
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", gameLoop); // create an event listener for the tick event
+        themeSound = createjs.Sound.play("main_theme");
+        themeSound.stop();
+        themeSound.loop = -1;
 
         // setup the default scene
         scene = config.Scene.MENU;

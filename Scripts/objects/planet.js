@@ -58,7 +58,7 @@ var objects;
          * @returns {void}
          */
         Planet.prototype._checkBounds = function () {
-            if (this.x <= (0 - this.width)) {
+            if (this.x <= (0 - this.width + this.dx)) {
                 // TODO: change to asset load
                 this.image.src = "Assets/images/planet.png";
                 this.reset();
@@ -74,14 +74,14 @@ var objects;
          * @returns {void}
          */
         Planet.prototype.start = function () {
+            // TODO: change to asset load
+            this.image.src = "Assets/images/planet.png";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
             this.reset();
             this.dx = -5; // 5px per frame down
-            // TODO: change to asset load
-            this.image.src = "Assets/images/planet.png";
         };
         /**
          * This method updates the object's properties

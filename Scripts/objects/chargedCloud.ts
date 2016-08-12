@@ -21,7 +21,6 @@ module objects {
      */
     export class ChargedCloud extends GameObject {
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
-
         // PUBLIC PROPERTIES +++++++++++++++++++++++++++++++++++++++
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
@@ -56,7 +55,7 @@ module objects {
          * @returns {void}
          */
         private _checkBounds():void {
-            if (this.x <= (0 - this.width)) {
+            if (this.x <= (0 - this.width + this.dx)) {
                 this.reset();
             }
         }
