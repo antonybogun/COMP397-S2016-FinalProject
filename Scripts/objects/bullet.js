@@ -29,6 +29,7 @@ var objects;
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         function Bullet(imageString) {
             _super.call(this, imageString);
+            this.alpha = 0.5;
             this.start();
         }
         Object.defineProperty(Bullet.prototype, "inFlight", {

@@ -36,7 +36,7 @@ module objects {
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         constructor(imageString:string) {
             super(imageString)
-
+            this.alpha = 0.5;
             this.start();
         }
 

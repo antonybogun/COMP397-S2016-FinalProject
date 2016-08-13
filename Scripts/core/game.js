@@ -22,7 +22,7 @@ var core;
     core.currentLives = core.startingLives;
     core.fuelLevel = 5;
     core.gunBullets = 0;
-    core.gameSpeed = 2000;
+    core.gameSpeed = 1200;
     var startButton; // reference to our button class
     // declare scene variables
     var currentScene;
