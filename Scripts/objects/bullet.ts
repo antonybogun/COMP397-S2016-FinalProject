@@ -36,7 +36,7 @@ module objects {
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         constructor(imageString:string) {
             super(imageString)
-            this.alpha = 0.5;
+            this.alpha = 0.4;
             this.start();
         }
 
@@ -47,6 +47,7 @@ module objects {
             this.x = this.position.x;
             this.y = this.position.y;
             this.inFlight = false;
+            this.dy=0;
         }
 
         private  _checkBounds():void {
@@ -74,6 +75,7 @@ module objects {
         public update():void {
             if (this.inFlight) {
                 this.x += this.dx;
+                this.y += this.dy;
                 this.position.x = this.x;
                 this.position.y = this.y;
                 this._checkBounds();

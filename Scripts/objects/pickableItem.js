@@ -24,8 +24,8 @@ var objects;
      * @class FuelBox
      * @extends {createjs.Bitmap}
      */
-    var FuelBox = (function (_super) {
-        __extends(FuelBox, _super);
+    var PickableItem = (function (_super) {
+        __extends(PickableItem, _super);
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
         // PUBLIC PROPERTIES +++++++++++++++++++++++++++++++++++++++
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
@@ -35,7 +35,7 @@ var objects;
          * @constructor
          * @param {string} imageString
          */
-        function FuelBox(imageString) {
+        function PickableItem(imageString) {
             _super.call(this, imageString);
             this.start();
         }
@@ -47,7 +47,7 @@ var objects;
          * @method _checkBounds
          * @returns {void}
          */
-        FuelBox.prototype._checkBounds = function () {
+        PickableItem.prototype._checkBounds = function () {
             if (this.x <= (0 - this.width)) {
                 this.reset();
             }
@@ -61,7 +61,7 @@ var objects;
          * @method start
          * @returns {void}
          */
-        FuelBox.prototype.start = function () {
+        PickableItem.prototype.start = function () {
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
@@ -76,7 +76,7 @@ var objects;
         * @method _reset
         * @returns {void}
         */
-        FuelBox.prototype.reset = function () {
+        PickableItem.prototype.reset = function () {
             this.dx = -Math.floor((Math.random() * 5) + 7); // horizontal speed
             this.dy = -Math.floor((Math.random() * 4) - 2); // vertical drift
             // get a random y location
@@ -91,15 +91,15 @@ var objects;
          * @method update
          * @returns {void}
          */
-        FuelBox.prototype.update = function () {
+        PickableItem.prototype.update = function () {
             this.y += this.dy;
             this.x += this.dx;
             this._checkBounds();
             this.position.x = this.x;
             this.position.y = this.y;
         };
-        return FuelBox;
+        return PickableItem;
     }(objects.GameObject));
-    objects.FuelBox = FuelBox;
+    objects.PickableItem = PickableItem;
 })(objects || (objects = {}));
-//# sourceMappingURL=fuelBox.js.map
+//# sourceMappingURL=pickableItem.js.map

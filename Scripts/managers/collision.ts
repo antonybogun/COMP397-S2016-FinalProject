@@ -72,13 +72,13 @@ module managers {
                         if (object2.name === "fuelBox") {
                             if (core.fuelLevel < 5)
                                 core.fuelLevel++;
-                            (<objects.FuelBox>object2).reset();
+                            (<objects.PickableItem>object2).reset();
                             createjs.Sound.play("fuelPick");
                         }
 
                         if (object2.name === "gunBox") {
                             core.gunBullets += 5;
-                            (<objects.GunBox>object2).reset();
+                            (<objects.PickableItem>object2).reset();
 
                             //TODO: change the sound
                             createjs.Sound.play("gunPick");

@@ -19,7 +19,9 @@ var core;
     core.score = 0;
     // export let highScore:number = 0;
     core.startingLives = 5;
+    core.robotStartingLives = 5;
     core.currentLives = core.startingLives;
+    core.robotCurrentLives = core.startingLives;
     core.fuelLevel = 5;
     core.gunBullets = 0;
     core.gameSpeed = 1200;
@@ -48,9 +50,11 @@ var core;
         { id: "chargedCloud", src: "Assets/images/chargedCloud.png" },
         { id: "fuelBox", src: "Assets/images/fuel.png" },
         { id: "gunBox", src: "Assets/images/gun.png" },
+        { id: "liveBox", src: "Assets/images/liveBox.png" },
         { id: "live", src: "Assets/images/live.png" },
         { id: "spaceman", src: "Assets/images/spaceman.png" },
         { id: "bullet", src: "Assets/images/bullet.png" },
+        { id: "robot", src: "Assets/images/robot.png" },
         { id: "levelProgress", src: "Assets/images/levelProgress.png" },
         // sounds
         { id: "baaaa", src: "Assets/audio/baaaa.wav" },

@@ -29,7 +29,7 @@ var objects;
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         function Bullet(imageString) {
             _super.call(this, imageString);
-            this.alpha = 0.5;
+            this.alpha = 0.4;
             this.start();
         }
         Object.defineProperty(Bullet.prototype, "inFlight", {
@@ -49,6 +49,7 @@ var objects;
             this.x = this.position.x;
             this.y = this.position.y;
             this.inFlight = false;
+            this.dy = 0;
         };
         Bullet.prototype._checkBounds = function () {
             if (this.position.x <= -this.width) {
@@ -71,6 +72,7 @@ var objects;
         Bullet.prototype.update = function () {
             if (this.inFlight) {
                 this.x += this.dx;
+                this.y += this.dy;
                 this.position.x = this.x;
                 this.position.y = this.y;
                 this._checkBounds();

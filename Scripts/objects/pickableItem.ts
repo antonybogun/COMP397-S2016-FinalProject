@@ -1,4 +1,7 @@
 /**
+ * Created by Anton on 2016-08-08.
+ */
+/**
  * @author Anton Bogun
  * @author Liavontsi Brechka
  * @studentID 300863440
@@ -10,13 +13,13 @@
 
 module objects {
     /**
-     * This is the GunBox pickable object used in the level 2
+     * This is the FuelBox pickable object used in the level 2
      *
      * @export
-     * @class GunBox
+     * @class FuelBox
      * @extends {createjs.Bitmap}
      */
-    export class GunBox extends GameObject {
+    export class PickableItem extends GameObject {
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
 
         // PUBLIC PROPERTIES +++++++++++++++++++++++++++++++++++++++
