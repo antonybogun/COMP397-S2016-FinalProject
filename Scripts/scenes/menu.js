@@ -27,6 +27,13 @@ var scenes;
          *
          */
         Menu.prototype.start = function () {
+            //reset score values
+            core.score = 0;
+            core.currentLives = core.gameStartingLives;
+            core.robotCurrentLives = core.robotStartingLives;
+            core.fuelLevel = 5;
+            core.bulletsCollected = 0;
+            core.currentGunBullets = 0;
             this._space = new objects.Space("space");
             this.addChild(this._space);
             // Add Menu Label
