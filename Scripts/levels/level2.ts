@@ -32,8 +32,6 @@ module levels {
         private _playerIcon:createjs.Bitmap;
         private _levelTotalTime:number;
         private _levelStartTime:number;
-        //stub button
-        private _stubNextLevelButton:objects.Button;
 
         constructor() {
             super();
@@ -129,10 +127,6 @@ module levels {
             this._playerIcon.y = 455;
             this.addChild(this._playerIcon);
 
-            // add stub next level button
-            this._stubNextLevelButton = new objects.Button("nextLevelStub", 320, 430, true);
-            this._stubNextLevelButton.on("click", this._nextLevel, this);
-            this.addChild(this._stubNextLevelButton);
 
             // add this scene to the global scene container
             core.stage.addChild(this);
@@ -219,16 +213,5 @@ module levels {
         }
 
         // EVENT HANDLERS ++++++++++++++++
-        /**
-         * Simulates next level continuation
-         *
-         * @param event
-         * @private
-         */
-        private _nextLevel(event:createjs.MouseEvent):void {
-            createjs.Sound.stop();
-            core.play.levelNumber++;
-            core.play.ChangeLevel();
-        }
     }
 }

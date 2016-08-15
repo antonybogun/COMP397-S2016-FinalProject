@@ -68,10 +68,6 @@ var levels;
             this._scoreLabel = new objects.Label("Score: " + core.score, "40px", "BroadwayFont", "#7200ff", 450, 5, false);
             this._scoreLabel.textAlign = "center";
             this.addChild(this._scoreLabel);
-            // add stub next level button
-            this._stubNextLevelButton = new objects.Button("nextLevelStub", 320, 430, true);
-            this._stubNextLevelButton.on("click", this._nextLevel, this);
-            this.addChild(this._stubNextLevelButton);
             // add this scene to the global scene container
             core.stage.addChild(this);
         };
@@ -132,17 +128,6 @@ var levels;
             }
         };
         // EVENT HANDLERS ++++++++++++++++
-        /**
-         * Simulates next level continuation
-         *
-         * @param event
-         * @private
-         */
-        Level1.prototype._nextLevel = function (event) {
-            createjs.Sound.stop();
-            core.play.levelNumber++;
-            core.play.ChangeLevel();
-        };
         /**
  * This event handler handle all the cheats combinations
  *
