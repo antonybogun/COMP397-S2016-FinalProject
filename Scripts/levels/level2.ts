@@ -43,6 +43,9 @@ module levels {
          * @private
          */
         private _updateScoreBoard() {
+            for (let i = 0; i < this._liveIcons.length; i++)
+                this._liveIcons[i].visible = true;
+                
             for (let i = core.gameStartingLives - 1; i > Math.max(0, core.currentLives - 1); i--) {
                 this._liveIcons[i].visible = false;
             }

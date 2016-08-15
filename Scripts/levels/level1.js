@@ -34,7 +34,6 @@ var levels;
          * @private
          */
         Level1.prototype._updateScoreBoard = function () {
-            console.log("update: " + core.currentLives);
             for (var i = 0; i < this._liveIcons.length; i++)
                 this._liveIcons[i].visible = true;
             for (var i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {

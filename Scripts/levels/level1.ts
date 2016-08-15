@@ -39,7 +39,6 @@ module levels {
          * @private
          */
         private _updateScoreBoard() {
-            console.log("update: " + core.currentLives);
             for (let i = 0; i < this._liveIcons.length; i++)
                 this._liveIcons[i].visible = true;
                 
