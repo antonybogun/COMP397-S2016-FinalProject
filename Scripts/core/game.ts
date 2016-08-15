@@ -85,7 +85,7 @@ namespace core {
         {id: "gunPick", src: "Assets/audio/gunPick.wav"},
         {id: "laserHit", src: "Assets/audio/laserHit.wav"},
         {id: "taDaFinal", src: "Assets/audio/taDaFinal.wav"},
-        {id: "pew", src: "Assets/audio/pew.wav"},
+        {id: "pew", src: "Assets/audio/lasertShoot.wav"},
         {id: "gotLive", src: "Assets/audio/gotLive.mp3"},
         {id: "taDaFinal", src: "Assets/audio/taDaFinal.wav"},
         {id: "cheat", src: "Assets/audio/cheat.wav"},
