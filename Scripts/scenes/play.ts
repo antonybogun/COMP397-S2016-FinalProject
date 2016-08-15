@@ -10,22 +10,23 @@
 module scenes {
     export class Play extends objects.Scene {
         //  PRIVATE INSTANCE VARIABLES
-        private _currentLevel:objects.Level;
+        private _currentLevel: objects.Level;
         private _levelNumber: number;
 
-        get levelNumber():number {
+        get levelNumber(): number {
             return this._levelNumber;
         }
 
-        set levelNumber(newLevel:number) {
+        set levelNumber(newLevel: number) {
             this._levelNumber = newLevel;
         }
 
         constructor() {
             super();
+            
         }
 
-        public start():void {
+        public start(): void {
             // start with the first level
             this._levelNumber = config.Level.LEVEL_1;
             if (this._currentLevel != null)
@@ -33,11 +34,11 @@ module scenes {
             this._currentLevel = new levels.Level1();
         }
 
-        public update():void {
+        public update(): void {
             this._currentLevel.updateLevel();
         }
 
-        public ChangeLevel():void {
+        public ChangeLevel(): void {
             //Launch Various Levels
             switch (this._levelNumber) {
                 // Show LEVEL 1
@@ -55,5 +56,7 @@ module scenes {
                     break;
             }
         }
+
+
     }
 }

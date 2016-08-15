@@ -70,6 +70,7 @@ var core;
         { id: "pew", src: "Assets/audio/pew.wav" },
         { id: "gotLive", src: "Assets/audio/gotLive.mp3" },
         { id: "taDaFinal", src: "Assets/audio/taDaFinal.wav" },
+        { id: "cheat", src: "Assets/audio/cheat.wav" },
         // stub
         { id: "gameOverStub", src: "Assets/images/gameOverStub.png" },
         { id: "nextLevelStub", src: "Assets/images/nextLevelStub.png" }

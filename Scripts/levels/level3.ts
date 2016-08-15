@@ -18,19 +18,19 @@ module levels {
      */
     export class Level3 extends objects.Level {
         //  PRIVATE INSTANCE VARIABLES
-        private _space:objects.Space;
-        private _player:objects.Player;
-        private _liveBoxes:objects.PickableItem[];
-        private _gunBoxes:objects.PickableItem[];
-        private _robot:objects.Enemy;
-        private _robotBullets:objects.Bullet[];
-        private _playerBullets:objects.Bullet[];
-        private _collision:managers.Collision;
-        private _playerLiveIcons:createjs.Bitmap[];
-        private _robotLiveIcons:createjs.Bitmap[];
-        private _bulletLabel:objects.Label;
-        private _preparationLabel:objects.Label;
-        private _timeToGo:number;
+        private _space: objects.Space;
+        private _player: objects.Player;
+        private _liveBoxes: objects.PickableItem[];
+        private _gunBoxes: objects.PickableItem[];
+        private _robot: objects.Enemy;
+        private _robotBullets: objects.Bullet[];
+        private _playerBullets: objects.Bullet[];
+        private _collision: managers.Collision;
+        private _playerLiveIcons: createjs.Bitmap[];
+        private _robotLiveIcons: createjs.Bitmap[];
+        private _bulletLabel: objects.Label;
+        private _preparationLabel: objects.Label;
+        private _timeToGo: number;
 
         constructor() {
             super();
@@ -38,6 +38,12 @@ module levels {
         }
 
         private _updateScoreBoard() {
+            for (let i = 0; i < this._playerLiveIcons.length; i++)
+                this._playerLiveIcons[i].visible = true;
+
+            for (let i = 0; i < this._robotLiveIcons.length; i++)
+                this._robotLiveIcons[i].visible = true;
+
             for (let i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {
                 this._playerLiveIcons[i].visible = false;
             }
@@ -53,7 +59,7 @@ module levels {
             this._bulletLabel.text = "Bullets:" + core.currentGunBullets;
         }
 
-        public initializeLevel():void {
+        public initializeLevel(): void {
             if (core.themeSound.playState != "playSucceeded")
                 core.themeSound.play();
 
@@ -132,7 +138,7 @@ module levels {
             core.stage.addChild(this);
         }
 
-        public updateLevel():void {
+        public updateLevel(): void {
             this._space.update();
             if (createjs.Ticker.getTime() < this._timeToGo)
                 return;
@@ -251,7 +257,7 @@ module levels {
         }
 
         // EVENT HANDLERS ++++++++++++++++
-        private _shoot(event:MouseEvent):void {
+        private _shoot(event: MouseEvent): void {
             for (let bullet in this._playerBullets) {
                 if (core.currentGunBullets > 0 && !this._playerBullets[bullet].inFlight) {
                     this._playerBullets[bullet].fire(

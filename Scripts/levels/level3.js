@@ -28,6 +28,10 @@ var levels;
             this.on("click", this._shoot);
         }
         Level3.prototype._updateScoreBoard = function () {
+            for (var i = 0; i < this._playerLiveIcons.length; i++)
+                this._playerLiveIcons[i].visible = true;
+            for (var i = 0; i < this._robotLiveIcons.length; i++)
+                this._robotLiveIcons[i].visible = true;
             for (var i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {
                 this._playerLiveIcons[i].visible = false;
             }

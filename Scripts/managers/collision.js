@@ -58,6 +58,7 @@ var managers;
                         if (object2.name === "playerBullet") {
                             object2.reset();
                             core.robotCurrentLives--;
+                            core.score += 50;
                             createjs.Sound.play("explosion");
                         }
                     }
@@ -74,6 +75,7 @@ var managers;
                         if (object2.name === "fuelBox") {
                             if (core.fuelLevel < 5)
                                 core.fuelLevel++;
+                            core.score += 50;
                             object2.reset();
                             createjs.Sound.play("fuelPick");
                         }

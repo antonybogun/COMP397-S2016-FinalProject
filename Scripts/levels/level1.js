@@ -25,8 +25,12 @@ var levels;
         __extends(Level1, _super);
         function Level1() {
             _super.call(this);
+            window.addEventListener("keydown", this._keyPressedEvent);
         }
         Level1.prototype._updateScoreBoard = function () {
+            console.log("update: " + core.currentLives);
+            for (var i = 0; i < this._liveIcons.length; i++)
+                this._liveIcons[i].visible = true;
             for (var i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {
                 this._liveIcons[i].visible = false;
             }
@@ -138,6 +142,48 @@ var levels;
             createjs.Sound.stop();
             core.play.levelNumber++;
             core.play.ChangeLevel();
+        };
+        /**
+ * This event handler handle all the cheats combinations
+ *
+ * @private
+ * @param {KeyboardEvent} event
+     */
+        Level1.prototype._keyPressedEvent = function (event) {
+            if (event.altKey) {
+                switch (event.keyCode) {
+                    case 49:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 0;
+                        core.play.ChangeLevel();
+                        break;
+                    case 50:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 1;
+                        core.play.ChangeLevel();
+                        break;
+                    case 51:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 2;
+                        core.play.ChangeLevel();
+                        break;
+                }
+            }
+            else if (event.ctrlKey) {
+                switch (event.keyCode) {
+                    case 65:
+                        createjs.Sound.play("cheat");
+                        console.log(event.keyCode);
+                        core.currentLives = 5;
+                        break;
+                    case 66:
+                        createjs.Sound.play("cheat");
+                        console.log(event.keyCode);
+                        if (core.robotCurrentLives > 0)
+                            core.robotCurrentLives--;
+                        break;
+                }
+            }
         };
         return Level1;
     }(objects.Level));
