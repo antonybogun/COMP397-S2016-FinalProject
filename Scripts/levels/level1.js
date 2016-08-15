@@ -1,11 +1,12 @@
 /**
+ * @filename: level1.ts
  * @author Anton Bogun
  * @author Liavontsi Brechka
  * @studentID 300863440
  * @studentID 300800345
- * @date August 8, 2016
+ * @date August 15, 2016
  * @description COMP397 - Web Game Programming - Final Project - The JavaScript Arcade Game
- * @version 0.2 - Version includes level 1 and 2
+ * @version 0.3 - Version includes levels 1, 2, and 3
  */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -27,6 +28,11 @@ var levels;
             _super.call(this);
             window.addEventListener("keydown", this._keyPressedEvent);
         }
+        /**
+         * This method updates score board of the level
+         *
+         * @private
+         */
         Level1.prototype._updateScoreBoard = function () {
             console.log("update: " + core.currentLives);
             for (var i = 0; i < this._liveIcons.length; i++)
@@ -36,6 +42,9 @@ var levels;
             }
             this._scoreLabel.text = "Score: " + core.score;
         };
+        /**
+         * Entry point of the level
+         */
         Level1.prototype.initializeLevel = function () {
             if (core.themeSound.playState != "playSucceeded")
                 core.themeSound.play();
@@ -71,6 +80,9 @@ var levels;
             // add this scene to the global scene container
             core.stage.addChild(this);
         };
+        /**
+         * This method update level
+         */
         Level1.prototype.updateLevel = function () {
             var _this = this;
             this._space.update();
@@ -129,11 +141,11 @@ var levels;
         };
         // EVENT HANDLERS ++++++++++++++++
         /**
- * This event handler handle all the cheats combinations
- *
- * @private
- * @param {KeyboardEvent} event
-     */
+         * This event handler handle all the cheats combinations
+         *
+         * @private
+         * @param {KeyboardEvent} event
+             */
         Level1.prototype._keyPressedEvent = function (event) {
             if (event.altKey) {
                 switch (event.keyCode) {

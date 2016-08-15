@@ -1,11 +1,12 @@
 /**
+ * @filename: level1.ts
  * @author Anton Bogun
  * @author Liavontsi Brechka
  * @studentID 300863440
  * @studentID 300800345
- * @date August 8, 2016
+ * @date August 15, 2016
  * @description COMP397 - Web Game Programming - Final Project - The JavaScript Arcade Game
- * @version 0.2 - Version includes level 1 and 2
+ * @version 0.3 - Version includes levels 1, 2, and 3
  */
 
 module levels {
@@ -18,32 +19,40 @@ module levels {
      */
     export class Level1 extends objects.Level {
         //  PRIVATE INSTANCE VARIABLES
-        private _space:objects.Space;
-        private _planet:objects.Planet;
-        private _player:objects.Player;
-        private _chargedClouds:objects.ChargedCloud[];
-        private _collision:managers.Collision;
-        private _scoreLabel:objects.Label;
-        private _liveIcons:createjs.Bitmap[];
+        private _space: objects.Space;
+        private _planet: objects.Planet;
+        private _player: objects.Player;
+        private _chargedClouds: objects.ChargedCloud[];
+        private _collision: managers.Collision;
+        private _scoreLabel: objects.Label;
+        private _liveIcons: createjs.Bitmap[];
 
         constructor() {
             super();
-            
+
             window.addEventListener("keydown", this._keyPressedEvent);
         }
 
+        /**
+         * This method updates score board of the level
+         * 
+         * @private
+         */
         private _updateScoreBoard() {
             console.log("update: " + core.currentLives);
-            for (let i = 0; i < this._liveIcons.length;i++) 
+            for (let i = 0; i < this._liveIcons.length; i++)
                 this._liveIcons[i].visible = true;
+                
             for (let i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {
                 this._liveIcons[i].visible = false;
             }
             this._scoreLabel.text = "Score: " + core.score;
         }
+        /**
+         * Entry point of the level
+         */
+        public initializeLevel(): void {
 
-        public initializeLevel():void {
-            
             if (core.themeSound.playState != "playSucceeded")
                 core.themeSound.play();
 
@@ -87,7 +96,10 @@ module levels {
             core.stage.addChild(this);
         }
 
-        public updateLevel():void {
+        /**
+         * This method update level
+         */
+        public updateLevel(): void {
             this._space.update();
             this._player.update();
             if (core.score < 800) {
@@ -126,7 +138,7 @@ module levels {
                         cloud.isActive = false;
                     }
                 });
-                
+
                 if (!this._planet.isActive
                     && this._chargedClouds.filter(cloud => cloud.isActive).length === 0
                     && this._space.x == 0) {
@@ -147,7 +159,7 @@ module levels {
 
         // EVENT HANDLERS ++++++++++++++++
 
-                /**
+        /**
          * This event handler handle all the cheats combinations
          * 
          * @private
@@ -192,7 +204,5 @@ module levels {
             }
 
         }
-        
-        
     }
 }
