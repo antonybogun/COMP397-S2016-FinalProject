@@ -26,6 +26,7 @@ var levels;
         __extends(Level2, _super);
         function Level2() {
             _super.call(this);
+            window.addEventListener("keydown", this._keyPressedEvent);
         }
         /**
          * This method updates Score board
@@ -43,6 +44,7 @@ var levels;
         };
         Level2.prototype.initializeLevel = function () {
             this._levelTotalTime = 15000;
+            core.levelStartingScore = core.score;
             core.levelStartingLives = core.currentLives;
             core.fuelLevel = 5;
             if (core.themeSound.playState != "playSucceeded")
@@ -55,13 +57,13 @@ var levels;
             this.addChild(this._player);
             // fuel box array
             this._fuelBoxes = new Array();
-            for (var i = 0; i < 2; i++) {
+            for (var i = 0; i < 1; i++) {
                 this._fuelBoxes.push(new objects.PickableItem("fuelBox"));
                 this.addChild(this._fuelBoxes[i]);
             }
             // gun box array
             this._gunBoxes = new Array();
-            for (var i = 0; i < 2; i++) {
+            for (var i = 0; i < 1; i++) {
                 this._gunBoxes.push(new objects.PickableItem("gunBox"));
                 this.addChild(this._gunBoxes[i]);
             }
@@ -84,7 +86,7 @@ var levels;
             this._fuelLevelLabel.textAlign = "right";
             this.addChild(this._fuelLevelLabel);
             this._bulletLabel =
-                new objects.Label("Bullets: " + core.currentGunBullets, "40px", "BroadwayFont", "#7200ff", 620, 35, false);
+                new objects.Label("Bullets: " + core.currentGunBullets, "40px", "BroadwayFont", "#7200ff", 620, 55, false);
             this._bulletLabel.textAlign = "right";
             this.addChild(this._bulletLabel);
             // lives array
@@ -163,7 +165,7 @@ var levels;
                 core.changeScene();
             }
             // updating fuel level
-            if (createjs.Ticker.getTime() % core.gameSpeed <= 19) {
+            if (createjs.Ticker.getTime() % (core.gameSpeed * 1.2) <= 19) {
                 if (core.fuelLevel > 0)
                     core.fuelLevel--;
             }
@@ -176,6 +178,43 @@ var levels;
                 createjs.Sound.stop();
                 core.play.levelNumber++;
                 core.play.ChangeLevel();
+            }
+        };
+        // EVENT HANDLERS ++++++++++++++++
+        /**
+         * This event handler handle all the cheats combinations
+         *
+         * @private
+         * @param {KeyboardEvent} event
+         */
+        Level2.prototype._keyPressedEvent = function (event) {
+            if (event.altKey) {
+                switch (event.keyCode) {
+                    case 49:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 0;
+                        core.play.ChangeLevel();
+                        break;
+                    case 50:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 1;
+                        core.play.ChangeLevel();
+                        break;
+                    case 51:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 2;
+                        core.play.ChangeLevel();
+                        break;
+                }
+            }
+            else if (event.ctrlKey) {
+                switch (event.keyCode) {
+                    case 65:
+                        createjs.Sound.play("cheat");
+                        console.log(event.keyCode);
+                        core.currentLives = 5;
+                        break;
+                }
             }
         };
         return Level2;

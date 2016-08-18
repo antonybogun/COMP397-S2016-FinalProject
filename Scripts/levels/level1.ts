@@ -12,20 +12,20 @@
 module levels {
     /**
      * This is the Level1 class for the level with ChargedClouds
-     * 
+     *
      * @export
      * @class Level1
      * @extends {createjs.Bitmap}
      */
     export class Level1 extends objects.Level {
         //  PRIVATE INSTANCE VARIABLES
-        private _space: objects.Space;
-        private _planet: objects.Planet;
-        private _player: objects.Player;
-        private _chargedClouds: objects.ChargedCloud[];
-        private _collision: managers.Collision;
-        private _scoreLabel: objects.Label;
-        private _liveIcons: createjs.Bitmap[];
+        private _space:objects.Space;
+        private _planet:objects.Planet;
+        private _player:objects.Player;
+        private _chargedClouds:objects.ChargedCloud[];
+        private _collision:managers.Collision;
+        private _scoreLabel:objects.Label;
+        private _liveIcons:createjs.Bitmap[];
 
         constructor() {
             super();
@@ -35,25 +35,26 @@ module levels {
 
         /**
          * This method updates score board of the level
-         * 
+         *
          * @private
          */
         private _updateScoreBoard() {
             for (let i = 0; i < this._liveIcons.length; i++)
                 this._liveIcons[i].visible = true;
-                
+
             for (let i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {
                 this._liveIcons[i].visible = false;
             }
             this._scoreLabel.text = "Score: " + core.score;
         }
+
         /**
          * Entry point of the level
          */
-        public initializeLevel(): void {
-
+        public initializeLevel():void {
             if (core.themeSound.playState != "playSucceeded")
                 core.themeSound.play();
+            core.levelStartingScore = 0;
 
             // ocean object
             this._space = new objects.Space("space");
@@ -98,7 +99,7 @@ module levels {
         /**
          * This method update level
          */
-        public updateLevel(): void {
+        public updateLevel():void {
             this._space.update();
             this._player.update();
             if (core.score < 800) {
@@ -160,11 +161,11 @@ module levels {
 
         /**
          * This event handler handle all the cheats combinations
-         * 
+         *
          * @private
          * @param {KeyboardEvent} event
-             */
-        private _keyPressedEvent(event: KeyboardEvent): void {
+         */
+        private _keyPressedEvent(event:KeyboardEvent):void {
             if (event.altKey) {
 
                 switch (event.keyCode) {
@@ -193,15 +194,8 @@ module levels {
                         console.log(event.keyCode);
                         core.currentLives = 5;
                         break;
-                    case 66:
-                        createjs.Sound.play("cheat");
-                        console.log(event.keyCode);
-                        if (core.robotCurrentLives > 0)
-                            core.robotCurrentLives--;
-                        break;
                 }
             }
-
         }
     }
 }

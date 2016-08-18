@@ -19,32 +19,27 @@ module levels {
      */
     export class Level3 extends objects.Level {
         //  PRIVATE INSTANCE VARIABLES
-        private _space: objects.Space;
-        private _player: objects.Player;
-        private _liveBoxes: objects.PickableItem[];
-        private _gunBoxes: objects.PickableItem[];
-        private _robot: objects.Enemy;
-        private _robotBullets: objects.Bullet[];
-        private _playerBullets: objects.Bullet[];
-        private _collision: managers.Collision;
-        private _playerLiveIcons: createjs.Bitmap[];
-        private _robotLiveIcons: createjs.Bitmap[];
-        private _bulletLabel: objects.Label;
-        private _preparationLabel: objects.Label;
-        private _timeToGo: number;
+        private _space:objects.Space;
+        private _player:objects.Player;
+        private _liveBoxes:objects.PickableItem[];
+        private _gunBoxes:objects.PickableItem[];
+        private _robot:objects.Enemy;
+        private _robotBullets:objects.Bullet[];
+        private _playerBullets:objects.Bullet[];
+        private _collision:managers.Collision;
+        private _playerLiveIcons:createjs.Bitmap[];
+        private _robotLiveIcons:createjs.Bitmap[];
+        private _bulletLabel:objects.Label;
+        private _preparationLabel:objects.Label;
+        private _timeToGo:number;
 
         constructor() {
             super();
             this.on("click", this._shoot);
+            window.addEventListener("keydown", this._keyPressedEvent);
         }
 
         private _updateScoreBoard() {
-            for (let i = 0; i < this._playerLiveIcons.length; i++)
-                this._playerLiveIcons[i].visible = true;
-
-            for (let i = 0; i < this._robotLiveIcons.length; i++)
-                this._robotLiveIcons[i].visible = true;
-
             for (let i = core.gameStartingLives - 1; i > Math.max(core.currentLives - 1, 0); i--) {
                 this._playerLiveIcons[i].visible = false;
             }
@@ -53,17 +48,18 @@ module levels {
                 this._playerLiveIcons[i].visible = true;
             }
 
-            for (let i = core.robotStartingLives - 1; i > core.robotCurrentLives - 1; i--) {
+            for (let i = core.robotStartingLives - 1; i > Math.max(core.robotCurrentLives - 1, 0); i--) {
                 this._robotLiveIcons[i].visible = false;
             }
 
             this._bulletLabel.text = "Bullets:" + core.currentGunBullets;
         }
 
-        public initializeLevel(): void {
+        public initializeLevel():void {
             if (core.themeSound.playState != "playSucceeded")
                 core.themeSound.play();
 
+            core.levelStartingScore = core.score;
             core.levelStartingLives = core.currentLives;
             core.levelStartingBullets = core.bulletsCollected;
             this._timeToGo = createjs.Ticker.getTime() + 5000;
@@ -123,7 +119,7 @@ module levels {
 
             // robot lives array
             this._robotLiveIcons = new Array<createjs.Bitmap>();
-            for (let i = 0; i < core.robotCurrentLives; i++) {
+            for (let i = 0; i < core.robotStartingLives; i++) {
                 this._robotLiveIcons.push(new createjs.Bitmap(core.assets.getResult("robotLive")));
                 this._robotLiveIcons[i].x = 598 - i * this._robotLiveIcons[0].getBounds().width;
                 this._robotLiveIcons[i].y = 5;
@@ -139,7 +135,7 @@ module levels {
             core.stage.addChild(this);
         }
 
-        public updateLevel(): void {
+        public updateLevel():void {
             this._space.update();
             if (createjs.Ticker.getTime() < this._timeToGo)
                 return;
@@ -258,7 +254,7 @@ module levels {
         }
 
         // EVENT HANDLERS ++++++++++++++++
-        private _shoot(event: MouseEvent): void {
+        private _shoot(event:MouseEvent):void {
             for (let bullet in this._playerBullets) {
                 if (core.currentGunBullets > 0 && !this._playerBullets[bullet].inFlight) {
                     this._playerBullets[bullet].fire(
@@ -266,6 +262,51 @@ module levels {
                     );
                     core.currentGunBullets -= 1;
                     break;
+                }
+            }
+        }
+
+        /**
+         * This event handler handle all the cheats combinations
+         *
+         * @private
+         * @param {KeyboardEvent} event
+         */
+        private _keyPressedEvent(event:KeyboardEvent):void {
+            if (event.altKey) {
+
+                switch (event.keyCode) {
+                    case 49:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 0;
+                        core.play.ChangeLevel();
+                        break;
+                    case 50:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 1;
+                        core.play.ChangeLevel();
+                        break;
+                    case 51:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 2;
+                        core.play.ChangeLevel();
+                        break;
+                }
+
+            }
+            else if (event.ctrlKey) {
+                switch (event.keyCode) {
+                    case 65:
+                        createjs.Sound.play("cheat");
+                        console.log(event.keyCode);
+                        core.currentLives = 5;
+                        break;
+                    case 66:
+                        createjs.Sound.play("cheat");
+                        console.log(event.keyCode);
+                        if (core.robotCurrentLives > 0)
+                            core.robotCurrentLives--;
+                        break;
                 }
             }
         }

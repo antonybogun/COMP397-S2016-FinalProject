@@ -42,16 +42,23 @@ var scenes;
             this.addChild(this._menuLabel);
             // add the start button
             this._startButton = new objects.Button("startButton", 320, 340, true);
+            this._startButton.scaleX = 1.4;
+            this._startButton.scaleY = 1.4;
+            this._startButton.shadow = new createjs.Shadow("#7200ff", 1, 1, 5);
             this.addChild(this._startButton);
             // start button event listener
             this._startButton.on("click", this._startButtonClick, this);
             // add the exit button
             this._exitButton = new objects.Button("exitButton", 320, 440, true);
+            this._exitButton.shadow = new createjs.Shadow("#8DFF00", 3, 3, 2);
             this.addChild(this._exitButton);
             // Exit button event listener
             this._exitButton.on("click", this._exitButtonClick, this);
             // add instructions button
             this._instructionsButton = new objects.Button("instructionsButton", 320, 390, true);
+            this._instructionsButton.scaleX = 1.4;
+            this._instructionsButton.scaleY = 1.4;
+            this._instructionsButton.shadow = new createjs.Shadow("#7200ff", 0, 0, 0);
             this.addChild(this._instructionsButton);
             // Instructions button event listener
             this._instructionsButton.on("click", this._instructionsButtonClick, this);
