@@ -36,7 +36,9 @@ module levels {
 
         constructor() {
             super();
+            window.addEventListener("keydown", this._keyPressedEvent);
         }
+
         /**
          * This method updates Score board
          * 
@@ -55,6 +57,7 @@ module levels {
         
         public initializeLevel():void {
             this._levelTotalTime = 15000;
+            core.levelStartingScore = core.score;
             core.levelStartingLives = core.currentLives;
             core.fuelLevel = 5;
             if (core.themeSound.playState != "playSucceeded")
@@ -77,7 +80,7 @@ module levels {
 
             // gun box array
             this._gunBoxes = new Array<objects.PickableItem>();
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 1; i++) {
                 this._gunBoxes.push(new objects.PickableItem("gunBox"));
                 this.addChild(this._gunBoxes[i]);
             }
@@ -110,7 +113,7 @@ module levels {
 
             this._bulletLabel =
                 new objects.Label("Bullets: " + core.currentGunBullets,
-                    "40px", "BroadwayFont", "#7200ff", 620, 35, false);
+                    "40px", "BroadwayFont", "#7200ff", 620, 55, false);
             this._bulletLabel.textAlign = "right";
             this.addChild(this._bulletLabel);
 
@@ -134,7 +137,6 @@ module levels {
             this._playerIcon.x = 10;
             this._playerIcon.y = 455;
             this.addChild(this._playerIcon);
-
 
             // add this scene to the global scene container
             core.stage.addChild(this);
@@ -204,7 +206,7 @@ module levels {
             }
 
             // updating fuel level
-            if (createjs.Ticker.getTime() % core.gameSpeed <= 19) {
+            if (createjs.Ticker.getTime() % (core.gameSpeed * 1.5) <= 12) {
                 if (core.fuelLevel > 0)
                     core.fuelLevel--;
             }
@@ -221,5 +223,43 @@ module levels {
         }
 
         // EVENT HANDLERS ++++++++++++++++
+        /**
+         * This event handler handle all the cheats combinations
+         *
+         * @private
+         * @param {KeyboardEvent} event
+         */
+        private _keyPressedEvent(event:KeyboardEvent):void {
+            if (event.altKey) {
+
+                switch (event.keyCode) {
+                    case 49:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 0;
+                        core.play.ChangeLevel();
+                        break;
+                    case 50:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 1;
+                        core.play.ChangeLevel();
+                        break;
+                    case 51:
+                        createjs.Sound.stop();
+                        core.play.levelNumber = 2;
+                        core.play.ChangeLevel();
+                        break;
+                }
+
+            }
+            else if (event.ctrlKey) {
+                switch (event.keyCode) {
+                    case 65:
+                        createjs.Sound.play("cheat");
+                        console.log(event.keyCode);
+                        core.currentLives = 5;
+                        break;
+                }
+            }
+        }
     }
 }

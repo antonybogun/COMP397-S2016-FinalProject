@@ -55,13 +55,13 @@ module scenes {
             this.addChild(this._gameOverLabel);
 
             this._finalScoreLabel = new objects.Label(
-                "FINAL SCORE: " + core.score, "40px", "BroadwayFont", "#7200ff",
+                "FINAL SCORE: " + core.score, "50px", "BroadwayFont", "#7200ff",
                 320, 180, true
             );
             this.addChild(this._finalScoreLabel);
 
             this._bulletsCollectedLabel = new objects.Label(
-                "BULLETS COLLECTED: " + core.bulletsCollected, "40px", "BroadwayFont", "#7200ff",
+                "BULLETS COLLECTED: " + core.bulletsCollected, "50px", "BroadwayFont", "#7200ff",
                 320, 230, true
             );
             this.addChild(this._bulletsCollectedLabel);
@@ -70,6 +70,8 @@ module scenes {
             this._restartButton = new objects.Button(
                 "restartButton", 320, 390, true
             );
+            this._restartButton.scaleX = 1.5;
+            this._restartButton.scaleY = 1.5;
             this._restartButton.on("click", this._restartButtonClick, this);
             this.addChild(this._restartButton);
 
@@ -78,6 +80,8 @@ module scenes {
                 this._restartLevelButton = new objects.Button(
                     "restartLevelButton", 320, 340, true
                 );
+                this._restartLevelButton.scaleX = 1.5;
+                this._restartLevelButton.scaleY = 1.5;
                 this._restartLevelButton.on("click", this._restartLevelButtonClick, this);
                 this.addChild(this._restartLevelButton);
             }
@@ -86,6 +90,8 @@ module scenes {
             this._returnToMenuButton = new objects.Button(
                 "returnToMenuButton", 320, 440, true
             );
+            this._returnToMenuButton.scaleX = 1.5;
+            this._returnToMenuButton.scaleY = 1.5;
             this.addChild(this._returnToMenuButton);
 
             // Exit button event listener
@@ -110,7 +116,7 @@ module scenes {
             // Switch the scene
             core.currentLives = core.gameStartingLives;
             core.score = 0;
-            core.bulletsCollected = 0;
+            core.bulletsCollected = core.currentGunBullets = 0;
             core.robotCurrentLives = core.robotStartingLives;
             core.scene = config.Scene.PLAY;
             core.wonGame = false;
@@ -119,8 +125,8 @@ module scenes {
 
         private _restartLevelButtonClick(event: createjs.MouseEvent): void {
             let currentLevel = core.play.levelNumber;
+            core.score = core.levelStartingScore;
             if (currentLevel == config.Level.LEVEL_1) {
-                core.score = 0;
                 core.currentLives = core.gameStartingLives;
             } else if (currentLevel == config.Level.LEVEL_2) {
                 core.bulletsCollected = 0;

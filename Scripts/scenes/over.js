@@ -41,22 +41,28 @@ var scenes;
                 this._gameOverLabel = new objects.Label("NO MORE LIVES - GAME OVER!", "40px", "BroadwayFont", "#7200ff", 320, 80, true);
             }
             this.addChild(this._gameOverLabel);
-            this._finalScoreLabel = new objects.Label("FINAL SCORE: " + core.score, "40px", "BroadwayFont", "#7200ff", 320, 180, true);
+            this._finalScoreLabel = new objects.Label("FINAL SCORE: " + core.score, "50px", "BroadwayFont", "#7200ff", 320, 180, true);
             this.addChild(this._finalScoreLabel);
-            this._bulletsCollectedLabel = new objects.Label("BULLETS COLLECTED: " + core.bulletsCollected, "40px", "BroadwayFont", "#7200ff", 320, 230, true);
+            this._bulletsCollectedLabel = new objects.Label("BULLETS COLLECTED: " + core.bulletsCollected, "50px", "BroadwayFont", "#7200ff", 320, 230, true);
             this.addChild(this._bulletsCollectedLabel);
             // add the restart button
             this._restartButton = new objects.Button("restartButton", 320, 390, true);
+            this._restartButton.scaleX = 1.5;
+            this._restartButton.scaleY = 1.5;
             this._restartButton.on("click", this._restartButtonClick, this);
             this.addChild(this._restartButton);
             if (!core.wonGame) {
                 // add the restart level button
                 this._restartLevelButton = new objects.Button("restartLevelButton", 320, 340, true);
+                this._restartLevelButton.scaleX = 1.5;
+                this._restartLevelButton.scaleY = 1.5;
                 this._restartLevelButton.on("click", this._restartLevelButtonClick, this);
                 this.addChild(this._restartLevelButton);
             }
             // add the exit button
             this._returnToMenuButton = new objects.Button("returnToMenuButton", 320, 440, true);
+            this._returnToMenuButton.scaleX = 1.5;
+            this._returnToMenuButton.scaleY = 1.5;
             this.addChild(this._returnToMenuButton);
             // Exit button event listener
             this._returnToMenuButton.on("click", this._returnToMenuButtonClick, this);
@@ -75,7 +81,7 @@ var scenes;
             // Switch the scene
             core.currentLives = core.gameStartingLives;
             core.score = 0;
-            core.bulletsCollected = 0;
+            core.bulletsCollected = core.currentGunBullets = 0;
             core.robotCurrentLives = core.robotStartingLives;
             core.scene = config.Scene.PLAY;
             core.wonGame = false;
@@ -83,8 +89,8 @@ var scenes;
         };
         Over.prototype._restartLevelButtonClick = function (event) {
             var currentLevel = core.play.levelNumber;
+            core.score = core.levelStartingScore;
             if (currentLevel == config.Level.LEVEL_1) {
-                core.score = 0;
                 core.currentLives = core.gameStartingLives;
             }
             else if (currentLevel == config.Level.LEVEL_2) {

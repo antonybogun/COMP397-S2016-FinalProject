@@ -57,7 +57,7 @@ var levels;
             this.addChild(this._player);
             // fuel box array
             this._fuelBoxes = new Array();
-            for (var i = 0; i < 1; i++) {
+            for (var i = 0; i < 2; i++) {
                 this._fuelBoxes.push(new objects.PickableItem("fuelBox"));
                 this.addChild(this._fuelBoxes[i]);
             }
@@ -165,7 +165,7 @@ var levels;
                 core.changeScene();
             }
             // updating fuel level
-            if (createjs.Ticker.getTime() % (core.gameSpeed * 1.2) <= 19) {
+            if (createjs.Ticker.getTime() % (core.gameSpeed * 1.5) <= 12) {
                 if (core.fuelLevel > 0)
                     core.fuelLevel--;
             }

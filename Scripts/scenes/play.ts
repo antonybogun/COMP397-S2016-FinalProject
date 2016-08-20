@@ -8,7 +8,6 @@
  * @description COMP397 - Web Game Programming - Final Project - The JavaScript Arcade Game
  * @version 0.3 - Version includes levels 1, 2, and 3
  */
-
 module scenes {
     export class Play extends objects.Scene {
         //  PRIVATE INSTANCE VARIABLES
@@ -25,7 +24,6 @@ module scenes {
 
         constructor() {
             super();
-            
         }
 
         public start(): void {
@@ -58,7 +56,5 @@ module scenes {
                     break;
             }
         }
-
-
     }
 }

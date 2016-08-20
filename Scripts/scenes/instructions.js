@@ -30,13 +30,15 @@ var scenes;
         Instructions.prototype.start = function () {
             var gameInstructions = [];
             var instructionsArray = [
-                "LEVEL 1: INFECT AS MANY PLANETS AS YOU CAN",
-                "FLYING OVER THEM AND AVOIDING CHARGED CLOUDS",
+                "STEER WITH A MOUSE",
                 "",
-                "LEVEL 2: WATCH FOR FUEL LEVEL AND",
-                "DODGE BULLETS. COLLECT ORANGE GUN BOXES",
+                "INFECT PLANETS: ",
                 "",
-                "LEVEL 3: FINISH OFF THE ROBOT, SHOOT BY CLICKING",
+                "AVOID CLOUDS AND BULLETS: ",
+                "",
+                "PICK USEFUL ITEMS: ",
+                "",
+                "FINISH THE ROBOT WITH MOUSE: ",
             ];
             this._space = new objects.Space("space");
             this.addChild(this._space);
@@ -44,18 +46,48 @@ var scenes;
                 gameInstructions[line] = new createjs.Text(instructionsArray[line], "BroadwayFont");
                 gameInstructions[line].x = 10;
                 gameInstructions[line].y = 20 + (2 * line);
-                this.addChild(new objects.Label(instructionsArray[line], "22px", "BroadwayFont", "#7200ff", 320, 40 * line + 40, true));
+                this.addChild(new objects.Label(instructionsArray[line], "25px", "BroadwayFont", "#7200ff", 320, 40 * line + 40, true));
             }
             // Add Menu Label
             this.addChild(this._instructionsLabel);
             // add the start button
-            this._startButton = new objects.Button("startButton", 320, 340, true);
+            this._startButton = new objects.Button("startButton", 320, 400, true);
+            this._startButton.scaleX = 1.5;
+            this._startButton.scaleY = 1.5;
             this.addChild(this._startButton);
-            this._returnButton = new objects.Button("returnButton", 320, 390, true);
+            this._returnButton = new objects.Button("returnButton", 320, 450, true);
+            this._returnButton.scaleX = 1.5;
+            this._returnButton.scaleY = 1.5;
             this.addChild(this._returnButton);
             // start button event listener
             this._startButton.on("click", this._startButtonClick, this);
             this._returnButton.on("click", this._returnButtonClick, this);
+            this._planet = new objects.Button("planet", 490, 120, true);
+            this._planet.scaleX = 0.7;
+            this._planet.scaleY = 0.7;
+            this.addChild(this._planet);
+            this._cloud = new objects.Button("chargedCloud", 550, 200, true);
+            this._cloud.scaleX = 0.5;
+            this._cloud.scaleY = 0.5;
+            this.addChild(this._cloud);
+            this._bullet = new objects.Button("bullet", 600, 200, true);
+            this.addChild(this._bullet);
+            this._fuel = new objects.Button("fuelBox", 500, 279, true);
+            this._fuel.scaleX = 0.7;
+            this._fuel.scaleY = 0.7;
+            this.addChild(this._fuel);
+            this._gun = new objects.Button("gunBox", 540, 280, true);
+            this._gun.scaleX = 0.7;
+            this._gun.scaleY = 0.7;
+            this.addChild(this._gun);
+            this._life = new objects.Button("liveBox", 580, 280, true);
+            this._life.scaleX = 0.7;
+            this._life.scaleY = 0.7;
+            this.addChild(this._life);
+            this._robot = new objects.Button("robot", 560, 360, true);
+            this._robot.scaleX = 0.5;
+            this._robot.scaleY = 0.5;
+            this.addChild(this._robot);
             // add this scene to the global scene container
             core.stage.addChild(this);
         };
