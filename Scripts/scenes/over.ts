@@ -61,7 +61,7 @@ module scenes {
             this.addChild(this._finalScoreLabel);
 
             this._bulletsCollectedLabel = new objects.Label(
-                "BULLETS COLLECTED: " + core.bulletsCollected, "50px", "BroadwayFont", "#7200ff",
+                "BULLETS COLLECTED: " + core.bulletsCollected, "40px", "BroadwayFont", "#7200ff",
                 320, 230, true
             );
             this.addChild(this._bulletsCollectedLabel);

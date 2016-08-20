@@ -43,7 +43,7 @@ var scenes;
             this.addChild(this._gameOverLabel);
             this._finalScoreLabel = new objects.Label("FINAL SCORE: " + core.score, "50px", "BroadwayFont", "#7200ff", 320, 180, true);
             this.addChild(this._finalScoreLabel);
-            this._bulletsCollectedLabel = new objects.Label("BULLETS COLLECTED: " + core.bulletsCollected, "50px", "BroadwayFont", "#7200ff", 320, 230, true);
+            this._bulletsCollectedLabel = new objects.Label("BULLETS COLLECTED: " + core.bulletsCollected, "40px", "BroadwayFont", "#7200ff", 320, 230, true);
             this.addChild(this._bulletsCollectedLabel);
             // add the restart button
             this._restartButton = new objects.Button("restartButton", 320, 390, true);
